@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DetectorRequest {
     private String texto;
+
 }

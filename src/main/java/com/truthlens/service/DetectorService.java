@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DetectorService {
 
-    public String analisar(String texto) {
+    public int calcularScore(String texto) {
 
         texto = texto.toLowerCase();
 
@@ -15,15 +15,21 @@ public class DetectorService {
             score++;
         }
 
-        if(texto.contains("100% garantido")) {
-            score++;
-        }
-
         if(texto.contains("milagre")) {
             score++;
         }
 
+        if(texto.contains("100% garantido")) {
+            score++;
+        }
+
+        return score;
+    }
+
+    public String gerarResultado(int score) {
+
         if(score >= 2) {
+
             return "Alta chance de fake news";
         }
 
