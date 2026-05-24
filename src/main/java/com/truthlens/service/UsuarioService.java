@@ -1,13 +1,16 @@
 package com.truthlens.service;
 
+import com.truthlens.dto.UsuarioDTO;
 import com.truthlens.model.Usuario;
 import com.truthlens.repository.UsuarioRepository;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -15,11 +18,26 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
+    @Autowired
+    private ModelMapper mapper;
+
     // LISTAR
 
-    public List<Usuario> listar() {
+    public List<UsuarioDTO> listar() {
 
-        return repository.findAll();
+        List<Usuario> usuarios =
+                repository.findAll();
+
+        return usuarios.stream()
+
+                .map(usuario ->
+                        mapper.map(
+                                usuario,
+                                UsuarioDTO.class
+                        )
+                )
+
+                .collect(Collectors.toList());
     }
 
     // BUSCAR POR ID
@@ -31,9 +49,17 @@ public class UsuarioService {
 
     // SALVAR
 
-    public Usuario salvar(Usuario usuario) {
+    public UsuarioDTO salvar(
+            Usuario usuario
+    ) {
 
-        return repository.save(usuario);
+        Usuario salvo =
+                repository.save(usuario);
+
+        return mapper.map(
+                salvo,
+                UsuarioDTO.class
+        );
     }
 
     // ATUALIZAR

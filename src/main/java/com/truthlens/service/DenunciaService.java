@@ -1,13 +1,17 @@
 package com.truthlens.service;
 
+import com.truthlens.dto.DenunciaDTO;
+import com.truthlens.exception.RecursoNaoEncontradoException;
 import com.truthlens.model.Denuncia;
 import com.truthlens.repository.DenunciaRepository;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DenunciaService {
@@ -15,25 +19,55 @@ public class DenunciaService {
     @Autowired
     private DenunciaRepository repository;
 
+    @Autowired
+    private ModelMapper mapper;
+
     // LISTAR
 
-    public List<Denuncia> listar() {
+    public List<DenunciaDTO> listar() {
 
-        return repository.findAll();
+        List<Denuncia> denuncias =
+                repository.findAll();
+
+        return denuncias.stream()
+
+                .map(denuncia ->
+                        mapper.map(
+                                denuncia,
+                                DenunciaDTO.class
+                        )
+                )
+
+                .collect(Collectors.toList());
     }
 
     // BUSCAR POR ID
 
-    public Optional<Denuncia> buscarPorId(Long id) {
+    public Denuncia buscarPorId(Long id) {
 
-        return repository.findById(id);
+        return repository.findById(id)
+
+                .orElseThrow(() ->
+
+                        new RecursoNaoEncontradoException(
+                                "Denúncia não encontrada"
+                        )
+                );
     }
 
     // SALVAR
 
-    public Denuncia salvar(Denuncia denuncia) {
+    public DenunciaDTO salvar(
+            Denuncia denuncia
+    ) {
 
-        return repository.save(denuncia);
+        Denuncia salva =
+                repository.save(denuncia);
+
+        return mapper.map(
+                salva,
+                DenunciaDTO.class
+        );
     }
 
     // ATUALIZAR

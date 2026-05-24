@@ -1,5 +1,6 @@
 package com.truthlens.controller;
 
+import com.truthlens.dto.UsuarioDTO;
 import com.truthlens.model.Usuario;
 import com.truthlens.service.UsuarioService;
 
@@ -27,7 +28,7 @@ public class UsuarioController {
     // GET TODOS
 
     @GetMapping
-    public List<Usuario> listar() {
+    public List<UsuarioDTO> listar() {
 
         return service.listar();
     }
@@ -56,7 +57,7 @@ public class UsuarioController {
 
     @ResponseStatus(HttpStatus.CREATED)
 
-    public Usuario salvar(
+    public UsuarioDTO salvar(
             @RequestBody Usuario usuario
     ) {
 

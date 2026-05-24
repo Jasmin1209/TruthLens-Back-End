@@ -1,5 +1,6 @@
 package com.truthlens.controller;
 
+import com.truthlens.dto.DenunciaDTO;
 import com.truthlens.model.Denuncia;
 import com.truthlens.service.DenunciaService;
 
@@ -27,26 +28,10 @@ public class DenunciaController {
     // GET - LISTAR
 
     @GetMapping
-    public List<Denuncia> listar() {
+
+    public List<DenunciaDTO> listar() {
 
         return service.listar();
-    }
-
-    // GET BY ID
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Denuncia> buscarPorId(
-            @PathVariable Long id
-    ) {
-
-        Optional<Denuncia> denuncia =
-                service.buscarPorId(id);
-
-        return denuncia
-                .map(ResponseEntity::ok)
-                .orElse(
-                        ResponseEntity.notFound().build()
-                );
     }
 
     // POST
@@ -55,7 +40,7 @@ public class DenunciaController {
 
     @ResponseStatus(HttpStatus.CREATED)
 
-    public Denuncia salvar(
+    public DenunciaDTO salvar(
             @RequestBody Denuncia denuncia
     ) {
 
