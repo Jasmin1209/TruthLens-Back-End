@@ -8,6 +8,7 @@ import com.truthlens.repository.DenunciaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,7 +57,7 @@ public class DenunciaService {
     }
 
     // SALVAR
-
+    @Transactional
     public DenunciaDTO salvar(
             Denuncia denuncia
     ) {
@@ -71,7 +72,7 @@ public class DenunciaService {
     }
 
     // ATUALIZAR
-
+    @Transactional
     public Denuncia atualizar(
             Long id,
             Denuncia novaDenuncia
@@ -93,7 +94,7 @@ public class DenunciaService {
     }
 
     // DELETAR
-
+    @Transactional
     public void deletar(Long id) {
 
         repository.deleteById(id);

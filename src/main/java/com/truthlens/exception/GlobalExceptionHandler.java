@@ -1,12 +1,14 @@
 package com.truthlens.exception;
 
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +16,9 @@ import java.util.Map;
 
 public class GlobalExceptionHandler {
 
-    // 404
+    // =========================================
+    // 404 - RECURSO NÃO ENCONTRADO
+    // =========================================
 
     @ExceptionHandler(
             RecursoNaoEncontradoException.class
@@ -36,7 +40,7 @@ public class GlobalExceptionHandler {
 
         erro.put(
                 "status",
-                404
+                HttpStatus.NOT_FOUND.value()
         );
 
         erro.put(
@@ -54,12 +58,72 @@ public class GlobalExceptionHandler {
                 .body(erro);
     }
 
-    // 500
+    // =========================================
+    // 400 - ERRO DE VALIDAÇÃO
+    // =========================================
+
+    @ExceptionHandler(
+            MethodArgumentNotValidException.class
+    )
+
+    public ResponseEntity<Map<String, Object>>
+    tratarValidacao(
+
+            MethodArgumentNotValidException ex
+    ) {
+
+        Map<String, String> campos =
+                new HashMap<>();
+
+        ex.getBindingResult()
+                .getFieldErrors()
+                .forEach(erro -> {
+
+                    campos.put(
+                            erro.getField(),
+                            erro.getDefaultMessage()
+                    );
+                });
+
+        Map<String, Object> resposta =
+                new HashMap<>();
+
+        resposta.put(
+                "timestamp",
+                LocalDateTime.now()
+        );
+
+        resposta.put(
+                "status",
+                HttpStatus.BAD_REQUEST.value()
+        );
+
+        resposta.put(
+                "erro",
+                "Erro de validação"
+        );
+
+        resposta.put(
+                "campos",
+                campos
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(resposta);
+    }
+
+    // =========================================
+    // 500 - ERRO INTERNO
+    // =========================================
 
     @ExceptionHandler(Exception.class)
 
     public ResponseEntity<Map<String, Object>>
-    tratarErroGeral(Exception ex) {
+    tratarErroGeral(
+
+            Exception ex
+    ) {
 
         Map<String, Object> erro =
                 new HashMap<>();
@@ -71,12 +135,12 @@ public class GlobalExceptionHandler {
 
         erro.put(
                 "status",
-                500
+                HttpStatus.INTERNAL_SERVER_ERROR.value()
         );
 
         erro.put(
                 "erro",
-                "Erro interno"
+                "Erro interno do servidor"
         );
 
         erro.put(

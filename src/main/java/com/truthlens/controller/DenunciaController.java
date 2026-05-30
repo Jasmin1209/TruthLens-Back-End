@@ -1,8 +1,13 @@
 package com.truthlens.controller;
 
 import com.truthlens.dto.DenunciaDTO;
+import com.truthlens.dto.DenunciaRequestDTO;
 import com.truthlens.model.Denuncia;
 import com.truthlens.service.DenunciaService;
+
+import jakarta.validation.Valid;
+
+import org.modelmapper.ModelMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 
@@ -25,7 +29,10 @@ public class DenunciaController {
     @Autowired
     private DenunciaService service;
 
-    // GET - LISTAR
+    @Autowired
+    private ModelMapper mapper;
+
+    // GET
 
     @GetMapping
 
@@ -41,8 +48,11 @@ public class DenunciaController {
     @ResponseStatus(HttpStatus.CREATED)
 
     public DenunciaDTO salvar(
-            @RequestBody Denuncia denuncia
+            @Valid @RequestBody DenunciaRequestDTO dto
     ) {
+
+        Denuncia denuncia =
+                mapper.map(dto, Denuncia.class);
 
         return service.salvar(denuncia);
     }
@@ -55,8 +65,11 @@ public class DenunciaController {
 
             @PathVariable Long id,
 
-            @RequestBody Denuncia denuncia
+            @Valid @RequestBody DenunciaRequestDTO dto
     ) {
+
+        Denuncia denuncia =
+                mapper.map(dto, Denuncia.class);
 
         Denuncia atualizada =
                 service.atualizar(id, denuncia);

@@ -7,6 +7,7 @@ import com.truthlens.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,13 +49,10 @@ public class UsuarioService {
     }
 
     // SALVAR
+    @Transactional
+    public UsuarioDTO salvar(Usuario usuario) {
 
-    public UsuarioDTO salvar(
-            Usuario usuario
-    ) {
-
-        Usuario salvo =
-                repository.save(usuario);
+        Usuario salvo = repository.save(usuario);
 
         return mapper.map(
                 salvo,
@@ -63,7 +61,7 @@ public class UsuarioService {
     }
 
     // ATUALIZAR
-
+    @Transactional
     public Usuario atualizar(
             Long id,
             Usuario novoUsuario
@@ -85,7 +83,7 @@ public class UsuarioService {
     }
 
     // DELETAR
-
+    @Transactional
     public void deletar(Long id) {
 
         repository.deleteById(id);

@@ -1,8 +1,13 @@
 package com.truthlens.controller;
 
 import com.truthlens.dto.UsuarioDTO;
+import com.truthlens.dto.UsuarioRequestDTO;
 import com.truthlens.model.Usuario;
 import com.truthlens.service.UsuarioService;
+
+import jakarta.validation.Valid;
+
+import org.modelmapper.ModelMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,9 +30,13 @@ public class UsuarioController {
     @Autowired
     private UsuarioService service;
 
+    @Autowired
+    private ModelMapper mapper;
+
     // GET TODOS
 
     @GetMapping
+
     public List<UsuarioDTO> listar() {
 
         return service.listar();
@@ -58,8 +67,11 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.CREATED)
 
     public UsuarioDTO salvar(
-            @RequestBody Usuario usuario
+            @Valid @RequestBody UsuarioRequestDTO dto
     ) {
+
+        Usuario usuario =
+                mapper.map(dto, Usuario.class);
 
         return service.salvar(usuario);
     }
@@ -72,8 +84,11 @@ public class UsuarioController {
 
             @PathVariable Long id,
 
-            @RequestBody Usuario usuario
+            @Valid @RequestBody UsuarioRequestDTO dto
     ) {
+
+        Usuario usuario =
+                mapper.map(dto, Usuario.class);
 
         Usuario atualizado =
                 service.atualizar(id, usuario);
