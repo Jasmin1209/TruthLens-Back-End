@@ -4,6 +4,8 @@ import com.truthlens.dto.UsuarioDTO;
 import com.truthlens.dto.UsuarioRequestDTO;
 import com.truthlens.model.Usuario;
 import com.truthlens.service.UsuarioService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import jakarta.validation.Valid;
 
@@ -36,10 +38,11 @@ public class UsuarioController {
     // GET TODOS
 
     @GetMapping
+    public Page<UsuarioDTO> listar(
+            Pageable pageable
+    ){
 
-    public List<UsuarioDTO> listar() {
-
-        return service.listar();
+        return service.listar(pageable);
     }
 
     // GET POR ID
