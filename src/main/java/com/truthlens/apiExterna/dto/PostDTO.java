@@ -1,4 +1,4 @@
-package com.truthlens.dto;
+package com.truthlens.apiExterna.dto;
 
 import lombok.Data;
 

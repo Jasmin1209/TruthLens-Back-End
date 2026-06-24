@@ -1,9 +1,9 @@
-package com.truthlens.service;
+package com.truthlens.denuncia.service;
 
-import com.truthlens.dto.DenunciaDTO;
+import com.truthlens.denuncia.dto.DenunciaDTO;
 import com.truthlens.exception.RecursoNaoEncontradoException;
-import com.truthlens.model.Denuncia;
-import com.truthlens.repository.DenunciaRepository;
+import com.truthlens.denuncia.model.Denuncia;
+import com.truthlens.denuncia.model.repository.DenunciaRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class DenunciaService {

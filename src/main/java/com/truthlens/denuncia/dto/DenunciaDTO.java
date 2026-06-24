@@ -1,4 +1,4 @@
-package com.truthlens.dto;
+package com.truthlens.denuncia.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 
-public class UsuarioDTO {
+public class DenunciaDTO {
     private Long id;
 
-    private String email;
+    private String titulo;
+
+    private String descricao;
 }

@@ -1,9 +1,9 @@
-package com.truthlens.controller;
+package com.truthlens.denuncia.controller;
 
-import com.truthlens.dto.DenunciaDTO;
-import com.truthlens.dto.DenunciaRequestDTO;
-import com.truthlens.model.Denuncia;
-import com.truthlens.service.DenunciaService;
+import com.truthlens.denuncia.dto.DenunciaDTO;
+import com.truthlens.denuncia.dto.DenunciaRequestDTO;
+import com.truthlens.denuncia.model.Denuncia;
+import com.truthlens.denuncia.service.DenunciaService;
 
 import jakarta.validation.Valid;
 
@@ -17,8 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 

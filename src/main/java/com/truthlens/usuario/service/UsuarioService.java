@@ -1,8 +1,8 @@
-package com.truthlens.service;
+package com.truthlens.usuario.service;
 
-import com.truthlens.dto.UsuarioDTO;
-import com.truthlens.model.Usuario;
-import com.truthlens.repository.UsuarioRepository;
+import com.truthlens.usuario.dto.UsuarioDTO;
+import com.truthlens.usuario.model.Usuario;
+import com.truthlens.usuario.repository.UsuarioRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 
 @Service

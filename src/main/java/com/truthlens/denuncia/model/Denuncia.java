@@ -1,4 +1,4 @@
-package com.truthlens.model;
+package com.truthlens.denuncia.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

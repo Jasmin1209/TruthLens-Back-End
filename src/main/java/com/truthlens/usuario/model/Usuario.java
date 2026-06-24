@@ -1,4 +1,4 @@
-package com.truthlens.model;
+package com.truthlens.usuario.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

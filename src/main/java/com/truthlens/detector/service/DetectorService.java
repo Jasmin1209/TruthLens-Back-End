@@ -1,4 +1,4 @@
-package com.truthlens.service;
+package com.truthlens.detector.service;
 
 import org.springframework.stereotype.Service;
 

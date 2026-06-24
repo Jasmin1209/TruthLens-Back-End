@@ -1,9 +1,9 @@
-package com.truthlens.controller;
+package com.truthlens.detector.controller;
 
-import com.truthlens.dto.DetectorRequest;
-import com.truthlens.dto.DetectorResponse;
+import com.truthlens.detector.dto.DetectorRequest;
+import com.truthlens.detector.dto.DetectorResponse;
 
-import com.truthlens.service.DetectorService;
+import com.truthlens.detector.service.DetectorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

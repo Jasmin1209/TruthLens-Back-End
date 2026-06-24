@@ -1,4 +1,4 @@
-package com.truthlens.dto;
+package com.truthlens.detector.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

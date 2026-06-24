@@ -1,4 +1,4 @@
-package com.truthlens.dto;
+package com.truthlens.denuncia.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

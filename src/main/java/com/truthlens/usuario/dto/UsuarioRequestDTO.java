@@ -1,4 +1,4 @@
-package com.truthlens.dto;
+package com.truthlens.usuario.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,8 +1,8 @@
-package com.truthlens.controller;
+package com.truthlens.apiExterna.controller;
 
-import com.truthlens.dto.PostDTO;
+import com.truthlens.apiExterna.dto.PostDTO;
 
-import com.truthlens.service.ApiExternaService;
+import com.truthlens.apiExterna.service.ApiExternaService;
 
 import lombok.RequiredArgsConstructor;
 

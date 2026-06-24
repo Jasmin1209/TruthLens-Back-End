@@ -1,6 +1,6 @@
-package com.truthlens.service;
+package com.truthlens.apiExterna.service;
 
-import com.truthlens.dto.PostDTO;
+import com.truthlens.apiExterna.dto.PostDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

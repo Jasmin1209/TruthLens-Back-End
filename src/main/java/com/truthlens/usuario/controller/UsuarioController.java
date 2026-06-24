@@ -1,9 +1,9 @@
-package com.truthlens.controller;
+package com.truthlens.usuario.controller;
 
-import com.truthlens.dto.UsuarioDTO;
-import com.truthlens.dto.UsuarioRequestDTO;
-import com.truthlens.model.Usuario;
-import com.truthlens.service.UsuarioService;
+import com.truthlens.usuario.dto.UsuarioDTO;
+import com.truthlens.usuario.dto.UsuarioRequestDTO;
+import com.truthlens.usuario.model.Usuario;
+import com.truthlens.usuario.service.UsuarioService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
